@@ -5,6 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+    <!-- 좌측상단 메뉴버튼 추가 -->
     <include
             android:id="@+id/menu_button"
             layout="@layout/menu_button"
@@ -13,20 +14,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/interest_recyclerview"
+    <!-- GoogleMap 영역 -->
+
+    <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+            app:layout_constraintBottom_toTopOf="@id/button_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/menu_button" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
+    <!-- exit, phrases 버튼 영역 -->
+
+    <LinearLayout
+            android:id="@+id/button_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/bottom_nav_menu" />  <!-- bottom_nav_menu.xml 파일 생성 필요 -->
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
 
+        <Button
+                android:id="@+id/exit_button"
+                android:layout_width="206dp"
+                android:layout_height="match_parent"
+                android:text="Exit" />
+
+        <Button
+                android:id="@+id/conversation_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Conversation" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
