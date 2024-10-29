@@ -3,6 +3,9 @@
     <style name="Base.Theme.KAUEnglish_OOP" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <!-- 상단바 색상 검정으로 설정 -->
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 
     <style name="Theme.KAUEnglish_OOP" parent="Base.Theme.KAUEnglish_OOP" />
