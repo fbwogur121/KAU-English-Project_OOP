@@ -15,7 +15,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     <!-- GoogleMap 영역 -->
-
     <fragment
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -27,7 +26,6 @@
             app:layout_constraintTop_toBottomOf="@+id/menu_button" />
 
     <!-- exit, phrases 버튼 영역 -->
-
     <LinearLayout
             android:id="@+id/button_container"
             android:layout_width="match_parent"
