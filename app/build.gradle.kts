@@ -33,9 +33,22 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    viewBinding {
+        enable = true
+    }
 }
 
 dependencies {
+
+    //Google Maps SDK 라이브러리 추가
+    implementation ("com.google.android.gms:play-services-maps:18.1.0")
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+    //
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
