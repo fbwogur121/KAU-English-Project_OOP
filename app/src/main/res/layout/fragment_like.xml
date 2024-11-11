@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Top Navigation Layout -->
+
+
+    <!-- Interest Title Image View -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:gravity="start"
+        tools:layout_editor_absoluteX="18dp"
+        tools:layout_editor_absoluteY="16dp">
+
+        <!-- Menu Icon -->
+
+        <ImageButton
+            android:id="@+id/btnMenu"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:contentDescription="Menu Button"
+            android:src="@drawable/menu_icon"
+            tools:layout_editor_absoluteX="-1dp"
+            tools:layout_editor_absoluteY="1dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="Interest Title"
+        android:src="@drawable/interest_title_text" />
+
+
+    <!-- Line1 Interest Select -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <!-- Travel Button -->
+        <ImageButton
+            android:id="@+id/btnTravel"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:background="@null"
+            android:contentDescription="Travel Button"
+            android:src="@drawable/travel_button_unselected" />
+        <!-- Science Button -->
+        <ImageButton
+            android:id="@+id/btnScience"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:background="@null"
+            android:contentDescription="Science Button"
+            android:src="@drawable/science_button_unselected" />
+        <!-- Finance Button -->
+        <ImageButton
+            android:id="@+id/btnFinance"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:background="@null"
+            android:contentDescription="Finance Button"
+            android:src="@drawable/finance_button_unselected" />
+
+    </LinearLayout>
+
+    <!-- Line2 Interest Select -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <!-- Animal Button -->
+        <ImageButton
+            android:id="@+id/btnAnimal"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:background="@null"
+            android:contentDescription="Animal Button"
+            android:src="@drawable/animal_button_unselected" />
+
+        <!-- Music Button -->
+        <ImageButton
+            android:id="@+id/btnMusic"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:background="@null"
+            android:contentDescription="Music Button"
+            android:src="@drawable/music_button_unselected" />
+
+        <!-- Food Button -->
+        <ImageButton
+            android:id="@+id/btnFood"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:background="@null"
+            android:contentDescription="Food Button"
+            android:src="@drawable/food_button_unselected" />
+
+    </LinearLayout>
+
+    <!-- Line3 Interest Select -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+
+        <!-- Beauty Button -->
+        <ImageButton
+            android:id="@+id/btnBeauty"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:background="@null"
+            android:contentDescription="Beauty Button"
+            android:src="@drawable/beauty_button_unselected" />
+        <!-- Book Button -->
+        <ImageButton
+            android:id="@+id/btnBook"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:background="@null"
+            android:contentDescription="Book Button"
+            android:src="@drawable/book_button_unselected" />
+        <!-- Cloth Button -->
+        <ImageButton
+            android:id="@+id/btnCloth"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:background="@null"
+            android:contentDescription="Cloth Button"
+            android:src="@drawable/cloth_button_unselected" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/next_button"
+        android:layout_width="378dp"
+        android:layout_height="168dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="#FFFFFF"
+        app:srcCompat="@drawable/next_button" />
+
+
+    <!-- LikeFragment 내부 프래그먼트를 표시할 컨테이너 -->
+
+
+</LinearLayout>
+

@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">KAU-English_OOP</string>
+    <string name="welcome_text">Welcome to LexiLearn</string>
+    <string name="subtitle_text">English Experiences Tailored to Your Interests</string>
+    <string name="join_button">Join</string>
+    <string name="login_button">LogIn</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_map">Explore</string>
+    <string name="nav_camera">Camera</string>
+    <string name="nav_like">Like</string>
+    <string name="nav_calendar">Calendar</string>
 </resources>
