@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 버튼들이 들어갈 HorizontalScrollView와 LinearLayout 설정 -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/selectedButtonsContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/selected_button_travel"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:src="@drawable/travel_button_unselected" />
+
+    <ImageButton
+        android:id="@+id/selected_button_science"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:src="@drawable/science_button_unselected" />
+
+    <ImageButton
+        android:id="@+id/selected_button_finance"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:src="@drawable/finance_button_unselected" />
+
+        <ImageButton
+            android:id="@+id/selected_button_animal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:src="@drawable/animal_button_unselected" />
+
+        <ImageButton
+        android:id="@+id/selected_button_music"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:src="@drawable/music_button_unselected" />
+
+    <ImageButton
+        android:id="@+id/selected_button_food"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:src="@drawable/food_button_unselected" />
+
+    <ImageButton
+        android:id="@+id/selected_button_beauty"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:src="@drawable/beauty_button_unselected" />
+
+    <ImageButton
+        android:id="@+id/selected_button_book"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:src="@drawable/book_button_unselected" />
+
+    <ImageButton
+        android:id="@+id/selected_button_cloth"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:src="@drawable/cloth_button_unselected" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- Fragment를 교체할 FrameLayout을 추가합니다. -->
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

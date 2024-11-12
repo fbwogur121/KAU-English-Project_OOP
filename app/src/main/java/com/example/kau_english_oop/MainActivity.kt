@@ -5,10 +5,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import com.example.kau_english_oop.Bottom.CalendarFragment
+import com.example.kau_english_oop.Bottom.CameraFragment
+import com.example.kau_english_oop.Bottom.HomeFragment
+import com.example.kau_english_oop.Bottom.LikeFragment
+import com.example.kau_english_oop.Bottom.MapFragment
 import com.example.kau_english_oop.databinding.ActivityMainBinding
-
-
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 

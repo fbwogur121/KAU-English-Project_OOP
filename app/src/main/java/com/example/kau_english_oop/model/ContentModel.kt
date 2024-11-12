@@ -9,13 +9,5 @@ data class ContentModel(
     var timestamp: Long? = null, // 업로드 시간
     var favoriteCount: Int = 0, // 좋아요 카운트
     var favorites: MutableMap<String, Boolean> = HashMap() // 좋아요 정보
-){
-
-    data class Comment(
-        var uid: String? = null,
-        var userId: String? = null,
-        var comment: String? = null,
-        var timestamp: Long? = null
-    )
-}
+)
 

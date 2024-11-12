@@ -1,10 +1,11 @@
-package com.example.kau_english_oop
+package com.example.kau_english_oop.Camera
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.kau_english_oop.R
 import com.example.kau_english_oop.databinding.FragmentMyDiaryBinding
 
 
@@ -23,12 +24,21 @@ class MyDiaryFragment : Fragment() {
             navigateToFragment(DetailViewFragment())
         }
 
+        binding?.thisYearButton?.setOnClickListener {
+
+            navigateToFragment(DetailViewFragment())
+        }
+
+        binding?.timeArrangeButton?.setOnClickListener {
+
+            navigateToFragment(DetailViewFragment())
+        }
 
         return binding?.root
     }
 
     private fun navigateToFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction()
+        childFragmentManager.beginTransaction() // 자식 프래그먼트 관리자를 사용하여 교체
             .replace(R.id.fragmentContainer, fragment)
             .addToBackStack(null)
             .commit()
