@@ -17,6 +17,25 @@ class MyDiaryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding=FragmentMyDiaryBinding.inflate(inflater,container,false)
+
+        binding?.recentlyButton?.setOnClickListener {
+
+            navigateToFragment(DetailViewFragment())
+        }
+
+
         return binding?.root
+    }
+
+    private fun navigateToFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }
