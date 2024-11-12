@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="#FFFFFF">
+
+    <!-- Top Navigation Layout -->
+
+    <LinearLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- Recently Button -->
+
+        <ImageButton
+            android:id="@+id/recentlyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
+            android:background="@null"
+            android:contentDescription="Recently Button"
+            android:src="@drawable/recently_button" />
+
+
+        <!-- This Year Button -->
+        <ImageButton
+            android:id="@+id/thisYearButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
+            android:background="@null"
+            android:contentDescription="This Year Button"
+            android:src="@drawable/this_year_button" />
+
+        <!-- Time Arrange Button -->
+        <ImageButton
+            android:id="@+id/timeArrangeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
+            android:background="@null"
+            android:contentDescription="Time Arrange Button"
+            android:src="@drawable/time_arrange_button" />
+
+        <!-- My Favorite Button -->
+        <ImageButton
+            android:id="@+id/myFavoriteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
+            android:background="@null"
+            android:contentDescription="My Favorite Button"
+            android:src="@drawable/my_favorite_button" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+
