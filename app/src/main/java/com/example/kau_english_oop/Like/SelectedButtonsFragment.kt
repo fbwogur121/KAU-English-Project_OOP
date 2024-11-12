@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.Toast
-import com.example.kau_english_oop.Camera.MyDiaryFragment
 import com.example.kau_english_oop.R
 import com.example.kau_english_oop.databinding.FragmentSelectedButtonsBinding
 
@@ -111,15 +109,15 @@ class SelectedButtonsFragment : Fragment() {
     private fun onButtonClicked(selectedButton: ImageButton) {
         // 선택된 버튼에 따른 Fragment 결정
         val fragment = when (selectedButton) {
-            binding.selectedButtonTravel -> TravelFragment()
+            binding.selectedButtonTravel -> DefaultFragment()
             binding.selectedButtonScience -> ScienceFragment()
             binding.selectedButtonFinance -> FinanceFragment()
-            binding.selectedButtonAnimal -> AnimalFragment()
-            binding.selectedButtonMusic -> MusicFragment()
+            binding.selectedButtonAnimal -> DefaultFragment()
+            binding.selectedButtonMusic -> DefaultFragment()
             binding.selectedButtonFood -> FoodFragment()
-            binding.selectedButtonBeauty -> BeautyFragment()
-            binding.selectedButtonBook -> BookFragment()
-            binding.selectedButtonCloth -> ClothFragment()
+            binding.selectedButtonBeauty -> DefaultFragment()
+            binding.selectedButtonBook -> DefaultFragment()
+            binding.selectedButtonCloth -> DefaultFragment()
             else -> null
         }
 

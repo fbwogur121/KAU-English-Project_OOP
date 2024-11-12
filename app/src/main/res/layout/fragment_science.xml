@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Like.ScienceFragment">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="#FFFFFF">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- Top Navigation Layout -->
+
+    <LinearLayout
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:gravity="center"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <!-- Recently Button -->
+
+        <ImageButton
+            android:id="@+id/recentlyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
+            android:background="@null"
+            android:src="@drawable/journal_button" />
+
+
+        <!-- This Year Button -->
+        <ImageButton
+            android:id="@+id/thisYearButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
+            android:background="@null"
+            android:src="@drawable/youtube_button" />
+
+        <!-- Time Arrange Button -->
+        <ImageButton
+            android:id="@+id/timeArrangeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
+            android:background="@null"
+            android:src="@drawable/today_button" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
