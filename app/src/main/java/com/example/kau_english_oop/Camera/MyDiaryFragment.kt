@@ -38,7 +38,7 @@ class MyDiaryFragment : Fragment() {
     }
 
     private fun navigateToFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction() // 자식 프래그먼트 관리자를 사용하여 교체
+        parentFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
             .addToBackStack(null)
             .commit()

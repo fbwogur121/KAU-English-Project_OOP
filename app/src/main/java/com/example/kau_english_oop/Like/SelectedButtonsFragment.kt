@@ -135,7 +135,7 @@ class SelectedButtonsFragment : Fragment() {
                 binding.selectedButtonAnimal -> R.drawable.animal_button_selected
                 binding.selectedButtonMusic -> R.drawable.music_button_selected
                 binding.selectedButtonFood -> R.drawable.food_button_selected
-                binding.selectedButtonBeauty -> R.drawable.beauty_button_selected
+                binding.selectedButtonBeauty -> R.drawable.beauty_button_unselected
                 binding.selectedButtonBook -> R.drawable.book_button_selected
                 binding.selectedButtonCloth -> R.drawable.cloth_button_selected
                 else -> R.drawable.default_button_image

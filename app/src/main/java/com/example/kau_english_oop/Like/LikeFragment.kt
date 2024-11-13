@@ -1,14 +1,11 @@
-package com.example.kau_english_oop.Bottom
+package com.example.kau_english_oop.Like
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
-import com.example.kau_english_oop.Like.SelectedButtonsFragment
 import com.example.kau_english_oop.R
 import com.example.kau_english_oop.databinding.FragmentLikeBinding
 import com.example.kau_english_oop.model.ButtonState

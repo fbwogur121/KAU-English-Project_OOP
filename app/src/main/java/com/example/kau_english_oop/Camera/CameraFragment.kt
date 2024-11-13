@@ -1,4 +1,4 @@
-package com.example.kau_english_oop.Bottom
+package com.example.kau_english_oop.Camera
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
-import com.example.kau_english_oop.Camera.MyDiaryFragment
 import com.example.kau_english_oop.R
-import com.example.kau_english_oop.Camera.SearchFragment
-import com.example.kau_english_oop.Camera.WriteFragment
 import com.example.kau_english_oop.databinding.FragmentCameraBinding
 
 

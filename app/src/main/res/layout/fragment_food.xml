@@ -8,7 +8,7 @@
     android:gravity="center"
     android:background="#FFFFFF">
 
-    <!-- Top Navigation Layout -->
+
 
     <LinearLayout
         android:id="@+id/fragmentContainer"
@@ -17,10 +17,10 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <!-- Recently Button -->
+
 
         <ImageButton
-            android:id="@+id/recentlyButton"
+            android:id="@+id/foodJournal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="36dp"
@@ -28,18 +28,18 @@
             android:src="@drawable/journal_button" />
 
 
-        <!-- This Year Button -->
+
         <ImageButton
-            android:id="@+id/thisYearButton"
+            android:id="@+id/foodYoutube"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="36dp"
             android:background="@null"
             android:src="@drawable/youtube_button" />
 
-        <!-- Time Arrange Button -->
+
         <ImageButton
-            android:id="@+id/timeArrangeButton"
+            android:id="@+id/foodRecipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="36dp"
