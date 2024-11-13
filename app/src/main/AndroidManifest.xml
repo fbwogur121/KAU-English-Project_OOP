@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- GoogleMaps 권한 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KAUEnglish_OOP"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyChaP2A7tRcut2rQVc4Qy4OJiGPVoso_B8" />
 
         <!-- MainActivity는 앱의 시작 액티비티입니다 -->
         <activity
