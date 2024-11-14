@@ -1,12 +1,15 @@
 package com.example.kau_english_oop
 
+import android.Manifest
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import com.example.kau_english_oop.Calendar.CalendarFragment
+import com.example.kau_english_oop.Camera.CameraFragment
+import com.example.kau_english_oop.Like.LikeFragment
+import com.example.kau_english_oop.MapFragment
 import com.example.kau_english_oop.databinding.ActivityMainBinding
-
-
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),0)
+
         setContentView(binding.root)
 
 
@@ -56,14 +61,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadFragment(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragmentContainer, fragment)
-        transaction.commit()
+        supportFragmentManager.beginTransaction().apply{
+            replace(R.id.fragmentContainer, fragment)
+            addToBackStack(null)
+            commit()
+        }
+
     }
 
 }
-
-
 
 
 

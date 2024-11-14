@@ -1,21 +1,22 @@
-package com.example.kau_english_oop
+package com.example.kau_english_oop.Calendar
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.kau_english_oop.databinding.FragmentWriteBinding
+import com.example.kau_english_oop.databinding.FragmentCalendarBinding
 
-class WriteFragment : Fragment() {
 
-    private var binding: FragmentWriteBinding?=null
+
+class CalendarFragment : Fragment() {
+    private var binding: FragmentCalendarBinding?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding= FragmentWriteBinding.inflate(inflater,container,false)
+        binding=FragmentCalendarBinding.inflate(inflater,container,false)
         return binding?.root
     }
 }

@@ -1,4 +1,4 @@
-package com.example.kau_english_oop
+package com.example.kau_english_oop.Camera
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import com.example.kau_english_oop.R
 import com.example.kau_english_oop.databinding.FragmentCameraBinding
 
 
@@ -58,6 +59,7 @@ class CameraFragment : Fragment() {
             .addToBackStack(null)
             .commit()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

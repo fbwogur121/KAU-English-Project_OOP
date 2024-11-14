@@ -1,22 +1,22 @@
-package com.example.kau_english_oop
+package com.example.kau_english_oop.Camera
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.kau_english_oop.databinding.FragmentMyDiaryBinding
+import com.example.kau_english_oop.databinding.FragmentSearchBinding
 
 
-class MyDiaryFragment : Fragment() {
+class SearchFragment : Fragment() {
 
-    private var binding: FragmentMyDiaryBinding?=null
+    private var binding: FragmentSearchBinding?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding=FragmentMyDiaryBinding.inflate(inflater,container,false)
+        binding= FragmentSearchBinding.inflate(inflater,container,false)
         return binding?.root
     }
 }

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "791513485476-o026lku9k6svs2vu5t7b5gm9btp8d335.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kau_english_oop",
+            "certificate_hash": "3e23d428bedf94d079eb6b13ec2bb6f5c9516466"
+          }
+        },
+        {
           "client_id": "791513485476-843gslv4e6bmdsouecmt85u59lkjam77.apps.googleusercontent.com",
           "client_type": 3
         }
