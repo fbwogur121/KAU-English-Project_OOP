@@ -53,8 +53,8 @@ dependencies {
     // Firebase 라이브러리
     implementation(libs.firebase.database)
     implementation(libs.firebase.firestore.ktx)
-    implementation("com.google.firebase:firebase-storage:21.0.1") // storage 의존성 직접 추가
-    implementation("com.google.firebase:firebase-auth-ktx:21.2.0") // auth 의존성 직접 추가
+    implementation("com.google.firebase:firebase-storage:21.0.1")
+    implementation("com.google.firebase:firebase-auth-ktx:21.2.0")
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
