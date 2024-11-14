@@ -35,56 +35,49 @@ android {
         jvmTarget = "1.8"
     }
 
-
     buildFeatures {
         buildConfig = true
+        viewBinding = true
+        dataBinding = true
     }
-
-    buildFeatures{
-        viewBinding=true
-        dataBinding=true
-    }
-
 }
 
 dependencies {
+    // 공통 라이브러리
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
+    // Firebase 라이브러리
     implementation(libs.firebase.database)
     implementation(libs.firebase.firestore.ktx)
-    implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.firebase.storage.ktx)
     implementation(libs.firebase.auth.ktx)
-    implementation(libs.firebase.auth)
-    implementation(libs.play.services.maps)
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-
-    implementation("com.google.firebase:firebase-storage:21.0.1")
-
-
-    // Firebase BOM
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
-
-    // Firebase Analytics 및 Authentication
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
 
-    // Google Sign-In
+    // Navigation 라이브러리
+    implementation(libs.androidx.navigation.fragment.ktx)
 
-    implementation("com.google.android.gms:play-services-auth:20.5.0") // 최신 버전으로 변경
-    implementation ("com.github.bumptech.glide:glide:4.12.0")
-    annotationProcessor( "com.github.bumptech.glide:compiler:4.12.0")
+    // Google Maps SDK 라이브러리
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("com.google.android.libraries.places:places:2.6.0")
 
+    // Retrofit 및 네트워킹 라이브러리
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 
+    // Glide 라이브러리
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
 
+    // 테스트 라이브러리
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
-
-
