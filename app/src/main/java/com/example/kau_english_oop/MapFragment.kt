@@ -52,13 +52,30 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         return binding?.root
     }
 
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
+//        mapFragment?.getMapAsync(this)
+//
+//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+//    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
         mapFragment?.getMapAsync(this)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+
+        // 대화 버튼 클릭 리스너 추가
+        binding?.conversationButton?.setOnClickListener {
+            // ConversationFragment로 전환
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, ConversationFragment())
+                .addToBackStack(null)
+                .commit()
+        }
     }
+
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
@@ -89,49 +106,26 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)) // 파란색 마커
                 )
                 println("Clicked Location: Latitude = ${latLng.latitude}, Longitude = ${latLng.longitude}")
-                //fetchPlaceDetails(latLng) // 장소 정보 요청
+                fetchPlaceDetails(latLng) // 장소 정보 요청
             }
         } else {
             ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
         }
     }
 
-
     private fun fetchPlaceDetails(latLng: LatLng) {
-        val geocoder = Geocoder(requireContext(), Locale.getDefault())
-        try {
-            // Geocoder를 사용하여 위도 경도로 주소 정보 가져오기
-            val addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
-            // 주소가 null 또는 비어있는지 확인
-            val address = if (addresses != null && addresses.isNotEmpty()) {
-                addresses[0].getAddressLine(0)
-            } else {
-                "주소 정보를 찾을 수 없습니다."
-            }
-
-            // 주소 정보를 Toast로 사용자에게 표시
-            Toast.makeText(requireContext(), "주소: $address", Toast.LENGTH_SHORT).show()
-
-            // 클릭한 위치에서 건물 정보 요청
-            fetchBuildingDetailsFromPlacesAPI(latLng) // 이 줄을 추가하여 건물 정보 요청
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Toast.makeText(requireContext(), "위치 정보 요청 중 오류 발생", Toast.LENGTH_SHORT).show()
-        }
+        fetchBuildingDetailsFromPlacesAPI(latLng)
     }
 
     private fun fetchBuildingDetailsFromPlacesAPI(latLng: LatLng) {
         val apiKey = "AIzaSyChaP2A7tRcut2rQVc4Qy4OJiGPVoso_B8"
-        val radius = 100 // 검색 반경을 설정합니다.
+        val radius = 5 // 검색 반경을 설정합니다. (단위: 미터)
 
-        // OkHttpClient를 사용해 타임아웃 설정 추가
         val client = OkHttpClient.Builder()
-            .connectTimeout(15, TimeUnit.SECONDS) // 연결 타임아웃 설정
-            .readTimeout(15, TimeUnit.SECONDS) // 읽기 타임아웃 설정
+            .connectTimeout(15, TimeUnit.SECONDS)
+            .readTimeout(15, TimeUnit.SECONDS)
             .build()
 
-        // Retrofit 객체 생성 시 OkHttpClient 추가
         val service = Retrofit.Builder()
             .baseUrl("https://maps.googleapis.com/maps/api/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -149,21 +143,20 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                     if (response.isSuccessful && response.body() != null) {
                         val places = response.body()!!.results
                         if (places.isNotEmpty()) {
-                            // 여기서 UI 업데이트
-                            places.forEach { place ->
-                                println("Building Name: ${place.name}")
-                                println("Vicinity: ${place.vicinity}")
-                            }
+                            // 가장 가까운 장소 정보 출력
+                            val nearestPlace = places.first()
+                            System.out.println("Nearest Building Name: ${nearestPlace.name}")
+                            System.out.println("Vicinity: ${nearestPlace.vicinity}")
                         } else {
-                            println("No nearby places found.")
+                            System.out.println("No nearby places found.")
                         }
                     } else {
-                        println("Failed to fetch places. Status code: ${response.code()}")
+                        System.out.println("Failed to fetch places. Status code: ${response.code()}")
                     }
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    println("Error fetching places: ${e.localizedMessage}")
+                    System.out.println("Error fetching places: ${e.localizedMessage}")
                     Toast.makeText(requireContext(), "장소 정보를 가져오는 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
