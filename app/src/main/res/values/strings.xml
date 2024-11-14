@@ -1,9 +1,20 @@
 <resources>
+
     <string name="app_name">KAU-English_OOP</string>
     <string name="welcome_text">Welcome to LexiLearn</string>
     <string name="subtitle_text">English Experiences Tailored to Your Interests</string>
     <string name="join_button">Join</string>
     <string name="login_button">LogIn</string>
+
+    <string name="menu_button">Menu Button</string>
+    <string name="check_button">Check</string>
+    <string name="ranking_button">Ranking</string>
+    <string name="mypoint_button">MyPoint</string>
+    <string name="top_ranker_image">Top ranker image</string>
+    <string name="ranker_name_1">Mister.R</string>
+    <string name="ranker_point_1">765 point</string>
+    <string name="ranker_name_2">Sayginarok</string>
+    <string name="ranker_point_2">501 point</string>
 
     <string name="nav_home">Home</string>
     <string name="nav_map">Explore</string>

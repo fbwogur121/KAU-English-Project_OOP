@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Top Navigation Layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <!-- Menu Icon -->
+        <ImageButton
+            android:id="@+id/btnMenu"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:contentDescription="Menu Button"
+            android:src="@drawable/menu_icon" />
+
+
+
+    </LinearLayout>
+
+    <!-- 상단 탭 이미지 버튼 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp">
+
+        <ImageButton
+            android:id="@+id/btnCheck"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/calendar_check_button_unselected"
+            android:contentDescription="Check" />
+
+        <ImageButton
+            android:id="@+id/btnRanking"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/calendar_ranking_button_unselected"
+            android:contentDescription="Ranking" />
+
+        <ImageButton
+            android:id="@+id/btnMyPoint"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:src="@drawable/calendar_mypoint_button_selected"
+            android:contentDescription="My Point" />
+    </LinearLayout>
+
+
+</LinearLayout>
+

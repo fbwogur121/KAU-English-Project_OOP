@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".RankingFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.kau_english_oop.RankingViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Top Navigation Layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <!-- Menu Icon -->
+            <ImageButton
+                android:id="@+id/btnMenu"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:contentDescription="Menu Button"
+                android:src="@drawable/menu_icon" />
+
+
+
+        </LinearLayout>
+
+        <!-- 상단 탭 이미지 버튼 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="8dp">
+
+            <ImageButton
+                android:id="@+id/btnCheck"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@null"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/calendar_check_button_unselected"
+                android:contentDescription="Check" />
+
+            <ImageButton
+                android:id="@+id/btnRanking"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@null"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/calendar_ranking_button_selected"
+                android:contentDescription="Ranking" />
+
+            <ImageButton
+                android:id="@+id/btnMyPoint"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@null"
+                android:src="@drawable/calendar_mypoint_button_unselected"
+                android:contentDescription="My Point" />
+        </LinearLayout>
+
+        <!-- Ranking 화면 내용 -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Top 3 랭킹 영역 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="16dp">
+
+                    <!-- 각 랭커 정보는 여기에 추가 -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="8dp"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:src="@android:drawable/ic_menu_gallery"
+                            android:scaleType="centerCrop"
+                            android:background="@android:color/darker_gray"
+                            android:contentDescription="@string/top_ranker_image" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ranker_name_1"
+                            android:textColor="#000"
+                            android:textSize="16sp"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ranker_point_1"
+                            android:textColor="#000"
+                            android:textSize="14sp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                    <!-- 나머지 랭커들에 대한 정보 추가 가능 -->
+                </LinearLayout>
+
+                <!-- 추가 랭킹 목록 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 예시 사용자 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp"
+                        android:background="@android:color/holo_blue_light"
+                        android:layout_marginBottom="4dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/ranker_name_2"
+                            android:textColor="#000"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ranker_point_2"
+                            android:textColor="#000"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <!-- 다른 사용자 목록 추가 가능 -->
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>
