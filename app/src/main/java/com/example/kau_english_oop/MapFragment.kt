@@ -45,6 +45,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         super.onDestroyView()
         binding = null
     }
+
 }
+
+
 
 

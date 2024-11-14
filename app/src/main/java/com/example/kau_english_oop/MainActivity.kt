@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.kau_english_oop.Calendar.CalendarFragment
 import com.example.kau_english_oop.Camera.CameraFragment
 import com.example.kau_english_oop.Like.LikeFragment
+import com.example.kau_english_oop.MapFragment
 import com.example.kau_english_oop.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -69,8 +70,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-
-
 
 
 

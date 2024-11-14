@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.google.gms.google.services)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -35,6 +35,7 @@ android {
         jvmTarget = "1.8"
     }
 
+
     buildFeatures {
         buildConfig = true
     }
@@ -43,31 +44,31 @@ android {
         viewBinding=true
         dataBinding=true
     }
+
 }
 
 dependencies {
-
-    //Google Maps SDK 라이브러리 추가
-    implementation ("com.google.android.gms:play-services-maps:18.1.0")
-    implementation ("com.google.android.gms:play-services-location:21.0.1")
-    //
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
     implementation(libs.firebase.database)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.firebase.storage.ktx)
     implementation(libs.firebase.auth.ktx)
     implementation(libs.firebase.auth)
+    implementation(libs.play.services.maps)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+
     implementation("com.google.firebase:firebase-storage:21.0.1")
+
 
     // Firebase BOM
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
@@ -77,6 +78,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
 
     // Google Sign-In
+
     implementation("com.google.android.gms:play-services-auth:20.5.0") // 최신 버전으로 변경
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor( "com.github.bumptech.glide:compiler:4.12.0")
@@ -84,3 +86,5 @@ dependencies {
 
 
 }
+
+

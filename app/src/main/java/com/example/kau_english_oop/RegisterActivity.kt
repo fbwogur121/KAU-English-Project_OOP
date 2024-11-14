@@ -1,7 +1,6 @@
 package com.example.kau_english_oop
 
 
-
 import android.os.Bundle
 import android.util.Log
 import android.content.Intent
@@ -66,16 +65,9 @@ class RegisterActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = FirebaseAuth.getInstance().currentUser
                     Log.d("RegisterActivity", "signInWithCredential:success, User: ${user?.displayName}")
-
-                    // 로그인 성공 후 MainActivity로 이동
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // 이전 액티비티를 스택에서 제거
-                    startActivity(intent)
-                    finish() // RegisterActivity 종료
                 } else {
                     Log.w("RegisterActivity", "signInWithCredential:failure", task.exception)
                 }
             }
     }
-
 }
