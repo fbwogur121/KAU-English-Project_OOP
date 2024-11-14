@@ -67,6 +67,9 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.0.1")
     implementation("com.google.android.libraries.places:places:2.6.0")
 
+    // Google Sign-In 라이브러리 추가
+    implementation("com.google.android.gms:play-services-auth:20.5.0")
+
     // Retrofit 및 네트워킹 라이브러리
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
