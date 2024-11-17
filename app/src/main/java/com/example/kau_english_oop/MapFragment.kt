@@ -31,8 +31,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.OkHttpClient
+import okhttp3.*
 import java.util.concurrent.TimeUnit
+import org.json.JSONObject
+import java.io.IOException
 
 @Suppress("DEPRECATION")
 class MapFragment : Fragment(), OnMapReadyCallback {
@@ -107,9 +109,35 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 )
                 println("Clicked Location: Latitude = ${latLng.latitude}, Longitude = ${latLng.longitude}")
                 fetchPlaceDetails(latLng) // 장소 정보 요청
+                reverseGeocode(latLng)
             }
         } else {
             ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
+        }
+    }
+
+    private fun reverseGeocode(latLng: LatLng) {
+        val geocoder = Geocoder(requireContext(), Locale.getDefault())
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val addresses = withContext(Dispatchers.IO) {
+                    geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
+                }
+                if (!addresses.isNullOrEmpty()) {
+                    val address = addresses[0]
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(requireContext(), "Address: ${address.getAddressLine(0)}", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(requireContext(), "주소를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "역지오코딩 중 오류가 발생했습니다: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
@@ -118,8 +146,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun fetchBuildingDetailsFromPlacesAPI(latLng: LatLng) {
-        val apiKey = "AIzaSyChaP2A7tRcut2rQVc4Qy4OJiGPVoso_B8"
-        val radius = 5 // 검색 반경을 설정합니다. (단위: 미터)
+        val apiKey = "AIzaSyDqRBFBeX0BDgt56Js8OVJJcHHAJbyfUgk"
+        val radius = 100 // 검색 반경을 설정합니다. (단위: 미터)
+        val location = "${latLng.latitude},${latLng.longitude}"
 
         val client = OkHttpClient.Builder()
             .connectTimeout(15, TimeUnit.SECONDS)
@@ -133,20 +162,26 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             .build()
             .create(PlacesApiService::class.java)
 
-        val location = "${latLng.latitude},${latLng.longitude}"
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = service.getNearbyPlaces(location, radius, apiKey)
+                //val response = service.getNearbyPlaces(location, radius, apiKey)
+
 
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful && response.body() != null) {
+                        val responseBody = response.body()
+                        println("API Response: $response")
+
                         val places = response.body()!!.results
                         if (places.isNotEmpty()) {
                             // 가장 가까운 장소 정보 출력
-                            val nearestPlace = places.first()
+                            //val nearestPlace = places.first()
+                            val nearestPlace = places[1]
                             System.out.println("Nearest Building Name: ${nearestPlace.name}")
                             System.out.println("Vicinity: ${nearestPlace.vicinity}")
+                            System.out.println("Place Type: ${nearestPlace.types}")
                         } else {
                             System.out.println("No nearby places found.")
                         }

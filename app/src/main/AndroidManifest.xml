@@ -26,7 +26,7 @@
         <!-- Google Maps API 키 추가 -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB28nao1jThGeR3U_FS4NXxKSWvNQFpF-0" />
+            android:value="AIzaSyDqRBFBeX0BDgt56Js8OVJJcHHAJbyfUgk" />
 
 
         <!-- 앱의 시작 Activity를 StartActivity로 설정해야 하지만 오류로 임시로 MainActivity를 시작으로 -->
