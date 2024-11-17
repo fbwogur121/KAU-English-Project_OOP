@@ -9,6 +9,7 @@ interface PlacesApiService {
     suspend fun getNearbyPlaces(
         @Query("location") location: String, // lat,lng 형식
         @Query("radius") radius: Int, // 검색 반경
+        //@Query("type") type: String, // 장소 유형
         @Query("key") apiKey: String // API 키
     ): Response<PlacesResponse>
 }
