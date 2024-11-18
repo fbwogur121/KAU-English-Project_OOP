@@ -43,6 +43,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val LOCATION_PERMISSION_REQUEST_CODE = 1234
+    private var selectedBuildingName: String? = null // 선택된 빌딩 이름 저장 - 이후 ConversationFragment로 넘길 것.
 
     private var previousMarker: Marker? = null
 
@@ -54,13 +55,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         return binding?.root
     }
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
-//        mapFragment?.getMapAsync(this)
-//
-//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-//    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
@@ -71,8 +66,14 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         // 대화 버튼 클릭 리스너 추가
         binding?.conversationButton?.setOnClickListener {
             // ConversationFragment로 전환
+            val conversationFragment = ConversationFragment().apply {
+                arguments = Bundle().apply {
+                    putString("buildingName", selectedBuildingName)
+                }
+            }
+
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, ConversationFragment())
+                .replace(R.id.fragmentContainer, conversationFragment)
                 .addToBackStack(null)
                 .commit()
         }
@@ -141,6 +142,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+
+    // TODO: 나중에 없앨것
     private fun fetchPlaceDetails(latLng: LatLng) {
         fetchBuildingDetailsFromPlacesAPI(latLng)
     }
@@ -166,8 +169,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = service.getNearbyPlaces(location, radius, apiKey)
-                //val response = service.getNearbyPlaces(location, radius, apiKey)
-
 
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful && response.body() != null) {
@@ -182,6 +183,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                             System.out.println("Nearest Building Name: ${nearestPlace.name}")
                             System.out.println("Vicinity: ${nearestPlace.vicinity}")
                             System.out.println("Place Type: ${nearestPlace.types}")
+
+                            selectedBuildingName = nearestPlace.name
                         } else {
                             System.out.println("No nearby places found.")
                         }

@@ -23,6 +23,10 @@ class ConversationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // 전달받은 빌딩 이름을 TextView에 설정
+        val buildingName = arguments?.getString("buildingName")
+        binding.titleTextView.text = buildingName ?: "No Building Name"
+
         binding.exitButton.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
