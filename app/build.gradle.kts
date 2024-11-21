@@ -77,6 +77,7 @@ dependencies {
 
     // Glide 라이브러리
     implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation(libs.androidx.foundation.android)
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
 
     // 테스트 라이브러리
