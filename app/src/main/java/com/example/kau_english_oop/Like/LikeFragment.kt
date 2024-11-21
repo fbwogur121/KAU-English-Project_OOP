@@ -6,8 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.kau_english_oop.R
+import com.example.kau_english_oop.ViewModel.LikeViewModel
+import com.example.kau_english_oop.WriteViewModel
 import com.example.kau_english_oop.databinding.FragmentLikeBinding
+import com.example.kau_english_oop.databinding.FragmentSelectedButtonsBinding
 import com.example.kau_english_oop.model.ButtonState
 import java.util.ArrayList
 
@@ -16,6 +21,8 @@ class LikeFragment : Fragment() {
 
     private var _binding: FragmentLikeBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: LikeViewModel by viewModels()
+
     private val selectedButtons = mutableListOf<String>() // 선택된 버튼의 이름을 저장
 
     private lateinit var buttonStates: List<ButtonState>
@@ -46,21 +53,24 @@ class LikeFragment : Fragment() {
             }
         }
 
-        binding.nextButton.setOnClickListener {
-            if (selectedButtons.isEmpty()) {
-                Toast.makeText(requireContext(), "하나 이상의 버튼을 선택해주세요.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            } else {
-                val selectedButtonsFragment = SelectedButtonsFragment()
-                val bundle = Bundle()
-                bundle.putStringArrayList("selectedButtons", ArrayList(selectedButtons))
-                selectedButtonsFragment.arguments = bundle
+        // 저장 성공 메시지 관찰
+        viewModel.uploadStatus.observe(viewLifecycleOwner) { success ->
+            if (success) {
+                Toast.makeText(requireContext(), "저장 성공!", Toast.LENGTH_SHORT).show()
+            }
+        }
 
-                // FragmentTransaction을 사용하여 Fragment 교체
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, selectedButtonsFragment) // ID 확인
-                    .addToBackStack(null) // 뒤로 가기 기능을 위해 백스택에 추가
-                    .commit()
+        // 저장 실패 메시지 관찰
+        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+            Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+        }
+
+        binding.nextButton.setOnClickListener {
+            if (buttonStates.none { it.isSelected }) {
+                Toast.makeText(requireContext(), "하나 이상의 버튼을 선택해주세요.", Toast.LENGTH_SHORT).show()
+            } else {
+                viewModel.saveToFirestore(buttonStates)
+
             }
         }
 

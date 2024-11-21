@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.kau_english_oop.DetailViewFragment
 import com.example.kau_english_oop.R
 import com.example.kau_english_oop.databinding.FragmentMyDiaryBinding
 
@@ -26,12 +27,17 @@ class MyDiaryFragment : Fragment() {
 
         binding?.thisYearButton?.setOnClickListener {
 
-            navigateToFragment(DetailViewFragment())
+            navigateToFragment(ThisYearFragment())
         }
 
         binding?.timeArrangeButton?.setOnClickListener {
 
-            navigateToFragment(DetailViewFragment())
+            navigateToFragment(TimeArrangeFragment())
+        }
+
+        binding?.myFavoriteButton?.setOnClickListener {
+
+            navigateToFragment(FavoriteDiaryFragment())
         }
 
         return binding?.root

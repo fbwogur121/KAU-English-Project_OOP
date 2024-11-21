@@ -29,6 +29,8 @@
                 android:text="csy5271abcd@gmail.com"
                 android:textColor="#000000"
                 android:textSize="16sp" />
+
+
         </LinearLayout>
 
         <ImageView
@@ -38,7 +40,7 @@
             android:scaleType="center" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="578dp"
             android:layout_height="50dp">
 
             <ImageView
@@ -47,7 +49,9 @@
                 android:layout_height="35dp"
                 android:layout_marginLeft="7.5dp"
                 android:layout_marginTop="7.5dp"
-                android:src="@drawable/ic_favorite" />
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_unliked" />
 
             <ImageView
                 android:id="@+id/comment_imageview"
@@ -56,16 +60,35 @@
                 android:layout_marginLeft="7.5dp"
                 android:layout_marginTop="7.5dp"
                 android:src="@drawable/ic_chat" />
+
+            <ImageView
+                android:id="@+id/send_imageview"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="7.5dp"
+                android:layout_marginTop="7.5dp"
+                android:src="@drawable/send" />
+
+            <ImageView
+                android:id="@+id/bookmark_imageview"
+                android:layout_width="475dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="7.5dp"
+                android:src="@drawable/bookmark" />
+
         </LinearLayout>
 
+
+
         <TextView
-            android:id="@+id/like_textview"
+            android:id="@+id/timestamp_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Like 0"
+            android:text="time:"
             android:textColor="#000000"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/explain_textview"

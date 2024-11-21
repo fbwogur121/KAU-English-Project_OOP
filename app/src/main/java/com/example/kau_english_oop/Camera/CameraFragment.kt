@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import com.example.kau_english_oop.R
+import com.example.kau_english_oop.WriteFragment
 import com.example.kau_english_oop.databinding.FragmentCameraBinding
 
 
