@@ -109,7 +109,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)) // 파란색 마커
                 )
                 println("Clicked Location: Latitude = ${latLng.latitude}, Longitude = ${latLng.longitude}")
-                fetchPlaceDetails(latLng) // 장소 정보 요청
+                fetchBuildingDetailsFromPlacesAPI(latLng) // 장소 정보 요청
                 reverseGeocode(latLng)
             }
         } else {
@@ -142,15 +142,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-
-    // TODO: 나중에 없앨것
-    private fun fetchPlaceDetails(latLng: LatLng) {
-        fetchBuildingDetailsFromPlacesAPI(latLng)
-    }
-
     private fun fetchBuildingDetailsFromPlacesAPI(latLng: LatLng) {
         val apiKey = "AIzaSyDqRBFBeX0BDgt56Js8OVJJcHHAJbyfUgk"
-        val radius = 100 // 검색 반경을 설정합니다. (단위: 미터)
+        val radius = 10 // 검색 반경 설정 (단위: 미터)
         val location = "${latLng.latitude},${latLng.longitude}"
 
         val client = OkHttpClient.Builder()
