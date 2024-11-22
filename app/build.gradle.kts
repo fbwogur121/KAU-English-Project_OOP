@@ -38,7 +38,7 @@ android {
     buildFeatures {
         buildConfig = true
         viewBinding = true
-        dataBinding = true
+        dataBinding=true
     }
 }
 
@@ -79,6 +79,8 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation(libs.androidx.foundation.android)
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+
+
 
     // 테스트 라이브러리
     testImplementation(libs.junit)

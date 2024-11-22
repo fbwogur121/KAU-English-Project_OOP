@@ -22,6 +22,8 @@ class FinanceFragment : Fragment() {
             navigateToFragment(FinanceJournalFragment())
         }
 
+       
+
         return binding?.root
     }
     private fun navigateToFragment(fragment: Fragment) {

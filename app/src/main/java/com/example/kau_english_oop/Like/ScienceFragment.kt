@@ -23,6 +23,8 @@ class ScienceFragment : Fragment() {
             navigateToFragment(ScienceJournalFragment())
         }
 
+
+
         return binding?.root
     }
     private fun navigateToFragment(fragment: Fragment) {

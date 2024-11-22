@@ -1,4 +1,4 @@
-/* package com.example.kau_english_oop.Like
+package com.example.kau_english_oop.Like
 
 
 import android.os.Bundle
@@ -11,7 +11,6 @@ import androidx.fragment.app.activityViewModels
 import com.example.kau_english_oop.R
 import com.example.kau_english_oop.ViewModel.LikeViewModel
 import com.example.kau_english_oop.databinding.FragmentSelectedButtonsBinding
-import com.example.kau_english_oop.model.ButtonState
 
 class SelectedButtonsFragment : Fragment() {
 
@@ -29,6 +28,7 @@ class SelectedButtonsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSelectedButtonsBinding.inflate(inflater, container, false)
+
         buttonList = listOf(
             binding?.selectedButtonTravel to R.drawable.travel_button_unselected,
             binding?.selectedButtonScience to R.drawable.science_button_unselected,
@@ -44,8 +44,8 @@ class SelectedButtonsFragment : Fragment() {
         viewModel.fetchButtonStatesFromFirestore()
 
         // ViewModel의 LiveData를 관찰하여 UI 업데이트
-        viewModel.buttonStates.observe(viewLifecycleOwner) { selectedButtons ->
-            updateButtonVisibility(selectedButtons)
+        viewModel.buttonStatesMap.observe(viewLifecycleOwner) { buttonStates ->
+            updateButtonStates(buttonStates)
         }
 
 
@@ -58,8 +58,8 @@ class SelectedButtonsFragment : Fragment() {
         return binding?.root
     }
 
-    private fun updateButtonVisibility(selectedButtons: Map<String,Boolean>) {
-        // 모든 버튼을 숨김
+    private fun updateButtonStates(buttonStates: Map<String, Boolean>) {
+        // 모든 버튼을 GONE 상태로 초기화
         binding?.selectedButtonTravel?.visibility = View.GONE
         binding?.selectedButtonScience?.visibility = View.GONE
         binding?.selectedButtonFinance?.visibility = View.GONE
@@ -70,21 +70,24 @@ class SelectedButtonsFragment : Fragment() {
         binding?.selectedButtonBook?.visibility = View.GONE
         binding?.selectedButtonCloth?.visibility = View.GONE
 
-        // 선택된 버튼만 표시
-        selectedButtons.forEach { key,value ->
-            when (key) {
-                "Travel" -> binding?.selectedButtonTravel?.visibility = View.VISIBLE
-                "Science" -> binding?.selectedButtonScience?.visibility = View.VISIBLE
-                "Finance" -> binding?.selectedButtonFinance?.visibility = View.VISIBLE
-                "Animal" -> binding?.selectedButtonAnimal?.visibility = View.VISIBLE
-                "Music" -> binding?.selectedButtonMusic?.visibility = View.VISIBLE
-                "Food" -> binding?.selectedButtonFood?.visibility = View.VISIBLE
-                "Beauty" -> binding?.selectedButtonBeauty?.visibility = View.VISIBLE
-                "Book" -> binding?.selectedButtonBook?.visibility = View.VISIBLE
-                "Cloth" -> binding?.selectedButtonCloth?.visibility = View.VISIBLE
+        // 버튼 상태에 따라 VISIBLE로 설정
+        buttonStates.forEach { (key, value) ->
+            if (value) { // Boolean 값이 true인 경우
+                when (key) {
+                    "Travel" -> binding?.selectedButtonTravel?.visibility = View.VISIBLE
+                    "Science" -> binding?.selectedButtonScience?.visibility = View.VISIBLE
+                    "Finance" -> binding?.selectedButtonFinance?.visibility = View.VISIBLE
+                    "Animal" -> binding?.selectedButtonAnimal?.visibility = View.VISIBLE
+                    "Music" -> binding?.selectedButtonMusic?.visibility = View.VISIBLE
+                    "Food" -> binding?.selectedButtonFood?.visibility = View.VISIBLE
+                    "Beauty" -> binding?.selectedButtonBeauty?.visibility = View.VISIBLE
+                    "Book" -> binding?.selectedButtonBook?.visibility = View.VISIBLE
+                    "Cloth" -> binding?.selectedButtonCloth?.visibility = View.VISIBLE
+                }
             }
         }
     }
+
 
     // 버튼 클릭 시 호출되는 공통 처리 함수
     private fun onButtonClicked(selectedButton: ImageButton) {
@@ -102,7 +105,10 @@ class SelectedButtonsFragment : Fragment() {
             else -> null
         }
 
-
+        // 모든 버튼의 이미지를 기본 상태로 리셋
+        buttonList.forEach { (button, defaultDrawable) ->
+            button?.setImageResource(defaultDrawable)
+        }
 
         // 선택된 버튼만 선택 상태 이미지로 설정
         selectedButton.setImageResource(
@@ -137,4 +143,3 @@ class SelectedButtonsFragment : Fragment() {
     }
 }
 
-*/

@@ -40,6 +40,7 @@ class RegisterActivity : AppCompatActivity() {
         // Login 버튼 클릭 시
         binding.loginButton.setOnClickListener {
             val currentUser = auth.currentUser
+            println(currentUser)
             if (currentUser != null) {
                 // 이미 로그인된 경우 Firestore에서 사용자 정보 확인
                 checkUserInDatabase(currentUser.uid)
