@@ -144,7 +144,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     private fun fetchBuildingDetailsFromPlacesAPI(latLng: LatLng) {
         val apiKey = "AIzaSyDqRBFBeX0BDgt56Js8OVJJcHHAJbyfUgk"
-        val radius = 10 // 검색 반경 설정 (단위: 미터)
+        val radius = 30 // 검색 반경 설정 (단위: 미터)
         val location = "${latLng.latitude},${latLng.longitude}"
 
         val client = OkHttpClient.Builder()

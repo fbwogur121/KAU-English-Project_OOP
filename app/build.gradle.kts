@@ -85,4 +85,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // RecyclerView 라이브러리
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
 }
