@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import com.example.kau_english_oop.MenuFragment
 import com.example.kau_english_oop.R
 import com.example.kau_english_oop.ViewModel.LikeViewModel
 import com.example.kau_english_oop.WriteViewModel
@@ -51,6 +52,16 @@ class LikeFragment : Fragment() {
             buttonState.button.setOnClickListener {
                 toggleButtonSelection(buttonState)
             }
+        }
+
+        // btnMenu 클릭 리스너 추가
+        binding.btnMenu.setOnClickListener {
+            // MenuFragment로 전환
+            val menuFragment = MenuFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, menuFragment)
+                .addToBackStack(null)
+                .commit()
         }
 
         // 저장 성공 메시지 관찰

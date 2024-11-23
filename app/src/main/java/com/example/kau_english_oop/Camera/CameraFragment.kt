@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import com.example.kau_english_oop.MenuFragment
 import com.example.kau_english_oop.R
 import com.example.kau_english_oop.WriteFragment
 import com.example.kau_english_oop.databinding.FragmentCameraBinding
@@ -22,6 +23,16 @@ class CameraFragment : Fragment() {
     ): View? {
         binding = FragmentCameraBinding.inflate(inflater, container, false)
         val view = binding?.root
+
+        // btnMenu 클릭 리스너 추가 - 재혁
+        binding?.btnMenu?.setOnClickListener {
+            // MenuFragment로 전환
+            val menuFragment = MenuFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, menuFragment)
+                .addToBackStack(null)
+                .commit()
+        }
 
         binding?.btnMyDiary?.setOnClickListener {
             setSelectedButton(binding?.btnMyDiary, R.drawable.diary_selected)
