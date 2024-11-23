@@ -77,6 +77,15 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 .addToBackStack(null)
                 .commit()
         }
+
+        // ImageButton 클릭 리스너 추가
+        binding?.btnMenu?.setOnClickListener {
+            // MenuFragment로 전환
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, MenuFragment())
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
 
