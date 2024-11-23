@@ -49,36 +49,36 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="ID"
+            android:hint="Name"
             android:padding="8dp"/>
 
     </LinearLayout>
 
-    <!-- Password Input Field -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/text_input_bar"
-        android:padding="8dp">
+<!--    &lt;!&ndash; Password Input Field &ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:background="@drawable/text_input_bar"-->
+<!--        android:padding="8dp">-->
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/password_icon"
-            android:contentDescription="Password Icon" />
+<!--        <ImageView-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:src="@drawable/password_icon"-->
+<!--            android:contentDescription="Password Icon" />-->
 
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:background="@null"
-            android:padding="8dp"/>
-    </LinearLayout>
+<!--        <EditText-->
+<!--            android:id="@+id/etPassword"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:hint="Password"-->
+<!--            android:inputType="textPassword"-->
+<!--            android:background="@null"-->
+<!--            android:padding="8dp"/>-->
+<!--    </LinearLayout>-->
 
     <!-- Email Input Field -->
     <LinearLayout
