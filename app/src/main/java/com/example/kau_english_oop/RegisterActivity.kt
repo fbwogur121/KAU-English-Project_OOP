@@ -50,7 +50,14 @@ class RegisterActivity : AppCompatActivity() {
 
         // Join 버튼 클릭 시
         binding.joinButton.setOnClickListener {
-            signIn()
+            val currentUser = auth.currentUser
+            if (currentUser != null) {
+                // 이메일로 사용자 존재 여부 확인
+                checkIfUserExists(currentUser.email ?: "")
+            } else {
+                // Google 로그인 진행
+                signIn()
+            }
         }
 
         // Activity Result Launcher 초기화
@@ -80,7 +87,7 @@ class RegisterActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val userId = auth.currentUser?.uid
                     if (userId != null) {
-                        saveUserToDatabase(userId)
+                        checkIfUserExists(auth.currentUser?.email ?: "")
                     } else {
                         Toast.makeText(this, "사용자 정보를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
                     }
@@ -88,6 +95,29 @@ class RegisterActivity : AppCompatActivity() {
                     Log.w("RegisterActivity", "signInWithCredential:failure", task.exception)
                     Toast.makeText(this, "Firebase 인증 실패", Toast.LENGTH_SHORT).show()
                 }
+            }
+    }
+
+    private fun checkIfUserExists(email: String) {
+        db.collection("users").whereEqualTo("email", email).get()
+            .addOnSuccessListener { documents ->
+                if (!documents.isEmpty) {
+                    // 기존 사용자 존재 -> 로그인 화면으로 전환
+                    Toast.makeText(this, "이미 가입된 계정입니다. 로그인합니다.", Toast.LENGTH_SHORT).show()
+                    navigateToMainActivity()
+                } else {
+                    // 신규 사용자 -> 회원가입 진행
+                    val userId = auth.currentUser?.uid
+                    if (userId != null) {
+                        saveUserToDatabase(userId)
+                    } else {
+                        Toast.makeText(this, "사용자 정보를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("RegisterActivity", "Firestore 조회 실패: ${exception.message}")
+                Toast.makeText(this, "회원가입 여부 확인 실패", Toast.LENGTH_SHORT).show()
             }
     }
 
