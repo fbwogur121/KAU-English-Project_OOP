@@ -19,7 +19,7 @@ import com.example.kau_english_oop.databinding.FragmentThisYearBinding
 import com.example.kau_english_oop.databinding.ItemDetailBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
-
+// 올해의 데이터 이미지를 표시하는 Fragment
 class ThisYearFragment : Fragment() {
     private var binding: FragmentThisYearBinding? = null
     private lateinit var viewModel: DetailViewViewModel
@@ -39,7 +39,7 @@ class ThisYearFragment : Fragment() {
 
         // 올해의 데이터를 관찰
         viewModel.thisYearImages.observe(viewLifecycleOwner) { images ->
-            adapter.updateData(images)
+            adapter.updateData(images) // 데이터 변경 시 RecyclerView 업데이트
         }
 
         // 데이터를 가져옴
@@ -47,7 +47,7 @@ class ThisYearFragment : Fragment() {
 
 
 
-        return binding?.root
+        return binding?.root // 뷰 반환
     }
 
 

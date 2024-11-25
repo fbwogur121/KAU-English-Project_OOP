@@ -13,7 +13,7 @@ import com.example.kau_english_oop.R
 import com.example.kau_english_oop.databinding.FragmentFavoriteDiaryBinding
 import com.example.kau_english_oop.databinding.FragmentThisYearBinding
 
-
+// 좋아요한 다이어리 데이터를 표시하는 Fragment
 class FavoriteDiaryFragment : Fragment() {
     private var binding: FragmentFavoriteDiaryBinding? = null
     private lateinit var viewModel: DetailViewViewModel
@@ -25,15 +25,16 @@ class FavoriteDiaryFragment : Fragment() {
     ): View? {
         binding= FragmentFavoriteDiaryBinding.inflate(inflater,container,false)
 
+        // ViewModel 초기화
         viewModel = ViewModelProvider(requireActivity())[DetailViewViewModel::class.java]
+        // RecyclerView 초기화
         adapter = DetailViewAdapter(emptyList(), viewModel)
-
         binding?.favoriteDiaryRecyclerveiw?.layoutManager = LinearLayoutManager(requireContext())
         binding?.favoriteDiaryRecyclerveiw?.adapter = adapter
 
         // like가 true인 데이터만 추출
         viewModel.favoriteDiaryImages.observe(viewLifecycleOwner) { images ->
-            adapter.updateData(images)
+            adapter.updateData(images) // 데이터 변경 시 RecyclerView 업데이트
         }
 
         // 데이터를 가져옴
@@ -41,7 +42,7 @@ class FavoriteDiaryFragment : Fragment() {
 
 
 
-        return binding?.root
+        return binding?.root // 뷰 반환
     }
 
 

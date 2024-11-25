@@ -13,7 +13,7 @@ import com.example.kau_english_oop.DetailViewViewModel
 import com.example.kau_english_oop.databinding.FragmentDetailViewBinding
 import com.example.kau_english_oop.databinding.FragmentSearchBinding
 
-
+// 검색 기능을 제공하는 Fragment
 class SearchFragment : Fragment() {
 
     private var binding: FragmentSearchBinding?=null
@@ -25,20 +25,22 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentSearchBinding.inflate(inflater, container, false)
+        // ViewModel 초기화
         viewModel = ViewModelProvider(requireActivity())[DetailViewViewModel::class.java]
+        // RecyclerView 초기화
         adapter = DetailViewAdapter(emptyList(), viewModel)
-
         binding.searchRecyclerveiw.layoutManager = LinearLayoutManager(requireContext())
         binding.searchRecyclerveiw.adapter = adapter
 
         // 검색 결과 데이터를 관찰
         viewModel.searchResults.observe(viewLifecycleOwner) { images ->
-            adapter.updateData(images)
+            adapter.updateData(images)  // 데이터 변경 시 RecyclerView 업데이트
         }
 
 
-        // 업로드 버튼 클릭 이벤트
+        // 검색 버튼 클릭 이벤트
         binding?.searchIconButton?.setOnClickListener {
+
             val search_input = binding?.searchEditText?.text.toString() // 입력된 설명 가져오기
             // 한국어가 포함되었는지 검사하는 함수
             if (containsKorean(search_input)) {
@@ -50,11 +52,11 @@ class SearchFragment : Fragment() {
                 Toast.makeText(requireContext(), "검색어를 입력해주세요", Toast.LENGTH_SHORT).show() // 유효성 검사
                 return@setOnClickListener
             }
-            viewModel.fetchSearchResults(search_input)
+            viewModel.fetchSearchResults(search_input) // 검색 실행
         }
 
 
-        return binding?.root
+        return binding?.root  // 뷰 반환
     }
 
 

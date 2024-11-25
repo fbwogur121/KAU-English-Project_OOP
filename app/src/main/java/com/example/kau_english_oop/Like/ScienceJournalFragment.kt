@@ -12,25 +12,26 @@ import com.example.kau_english_oop.databinding.FragmentFinanceJournalBinding
 import com.example.kau_english_oop.databinding.FragmentScienceBinding
 import com.example.kau_english_oop.databinding.FragmentScienceJournalBinding
 
-
+// 과학 저널 웹 페이지를 표시하는 Fragment
 class ScienceJournalFragment : Fragment() {
-    private var binding: FragmentScienceJournalBinding? = null
+    private var binding: FragmentScienceJournalBinding? = null // ViewBinding 객체 선언
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // ViewBinding 초기화: XML 레이아웃을 확장하여 ViewBinding 객체 생성
         binding = FragmentScienceJournalBinding.inflate(inflater, container, false)
 
 
         // WebView 설정
-        binding?.webView?.webViewClient = WebViewClient() // WebView에서 페이지를 열도록 설정
+        binding?.webView?.webViewClient = WebViewClient()  // WebView에서 외부 브라우저가 아닌 WebView 자체에서 페이지를 열도록 설정
 
+        // 웹 페이지 로드 (Nature 저널 컬렉션 페이지)
+        binding?.webView?.loadUrl("https://www.nature.com/nature/collections")  // WebView에서 로드할 URL 설정
 
-        binding?.webView?.loadUrl("https://www.nature.com/nature/collections") // 원하는 URL로 변경
-
-
+        // Fragment의 루트 뷰 반환
         return binding?.root
     }
 
