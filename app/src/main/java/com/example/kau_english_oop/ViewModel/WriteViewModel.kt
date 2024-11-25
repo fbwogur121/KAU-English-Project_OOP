@@ -12,6 +12,7 @@ import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
 import java.util.*
 
+// Firebase와 상호작용하는 로직을 처리하는 ViewModel
 class WriteViewModel : ViewModel() {
 
     // Firebase 서비스 초기화
@@ -37,7 +38,7 @@ class WriteViewModel : ViewModel() {
 
         val uid = user.uid // Firebase UID
         val email = user.email ?: "unknown" // 사용자 이메일 (null 대비 기본값 설정)
-        val documentId = UUID.randomUUID().toString() // 고유 ID 생성
+        val documentId = UUID.randomUUID().toString() // 문서 고유 ID 생성
 
         // 현재 시간을 기준으로 파일 이름 생성
         var time = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date()) // 현재 시간을 "yyyyMMdd_HHmmss" 형식의 문자열로 변환
@@ -58,7 +59,7 @@ class WriteViewModel : ViewModel() {
             }
     }
 
-    // Firestore에 업로드된 이미지 데이터 저장
+    // Firestore에 데이터 저장
     private fun saveToFirestore(documentId:String,imageUrl: String, explanation: String, uid: String, email: String,like:Boolean) {
         val data = mapOf(
             "documentId" to documentId,
@@ -67,7 +68,7 @@ class WriteViewModel : ViewModel() {
             "uid" to uid, // 사용자 UID
             "email" to email, // 사용자 이메일
             "timestamp" to System.currentTimeMillis(), // 업로드 시간
-            "like" to false
+            "like" to false  // 초기 좋아요 상태
 
         )
 

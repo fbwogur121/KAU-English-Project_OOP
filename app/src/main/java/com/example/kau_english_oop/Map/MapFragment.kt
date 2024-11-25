@@ -1,4 +1,4 @@
-package com.example.kau_english_oop
+package com.example.kau_english_oop.Map
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.kau_english_oop.R
 import com.example.kau_english_oop.databinding.FragmentMapBinding
 import com.example.kau_english_oop.model.GoogleAPI.PlacesApiService
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -24,7 +25,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import java.util.*
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlinx.coroutines.CoroutineScope
@@ -33,8 +33,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.*
 import java.util.concurrent.TimeUnit
-import org.json.JSONObject
-import java.io.IOException
 
 @Suppress("DEPRECATION")
 class MapFragment : Fragment(), OnMapReadyCallback {

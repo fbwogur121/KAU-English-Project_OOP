@@ -14,9 +14,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.kau_english_oop.databinding.FragmentWriteBinding
 
+// WriteFragment는 이미지 업로드와 설명 입력 기능을 제공
 class WriteFragment : Fragment() {
 
-    private var binding:FragmentWriteBinding?=null
+    private var binding:FragmentWriteBinding?=null // ViewBinding을 위한 변수
     private lateinit var viewModel: WriteViewModel // ViewModel 초기화
     private var selectedImageUri: Uri? = null // 선택된 이미지의 Uri
 
@@ -24,10 +25,11 @@ class WriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Fragment와 연결된 레이아웃 초기화
         binding = FragmentWriteBinding.inflate(inflater, container, false) // ViewBinding 연결
         viewModel = ViewModelProvider(this)[WriteViewModel::class.java] // ViewModel 연결
 
-        setupObservers() // LiveData 관찰 설정
+        setupObservers()  // ViewModel의 LiveData를 관찰
         setupListeners() // UI 이벤트 처리
 
         return binding?.root
@@ -37,7 +39,7 @@ class WriteFragment : Fragment() {
     private fun setupListeners() {
         // 이미지 선택 버튼 클릭 이벤트
         binding?.addPhotoBtn?.setOnClickListener {
-            pickImage() // 이미지 선택
+            pickImage() // 이미지 선택 다이얼로그 실행
         }
 
         // 업로드 버튼 클릭 이벤트
@@ -46,18 +48,20 @@ class WriteFragment : Fragment() {
             // 한국어가 포함되었는지 검사하는 함수
             if (containsKorean(explanation)) {
                 Toast.makeText(requireContext(), "설명은 한국어를 포함할 수 없습니다. 다시 입력해 주세요.", Toast.LENGTH_LONG).show()
-                return@setOnClickListener // 함수 종료하여 업로드 중단
+                return@setOnClickListener  // 이벤트 처리 중단하여 업로드 중지
             }
 
+            // 이미지나 설명이 비어있는지 확인
             if (selectedImageUri == null || explanation.isEmpty()) {
                 Toast.makeText(requireContext(), "이미지와 설명을 입력하세요.", Toast.LENGTH_SHORT).show() // 유효성 검사
-                return@setOnClickListener
+                return@setOnClickListener // 이벤트 처리 중단하여 업로드 중지
             }
-            viewModel.uploadImage(selectedImageUri!!, explanation) // ViewModel에 업로드 요청
+            // ViewModel을 통해 Firebase 업로드 요청
+            viewModel.uploadImage(selectedImageUri!!, explanation)
         }
     }
 
-    // LiveData 관찰 설정
+    // ViewModel의 LiveData를 관찰
     private fun setupObservers() {
         // 업로드 성공 여부 관찰
         viewModel.uploadStatus.observe(viewLifecycleOwner) { success ->
@@ -73,12 +77,12 @@ class WriteFragment : Fragment() {
         }
     }
 
-    // 이미지 선택기 실행
+    // 이미지 선택 다이얼로그 실행
     private fun pickImage() {
         val intent = Intent(Intent.ACTION_PICK).apply {
             type = "image/*" // 이미지 타입 필터 설정
         }
-        imagePickerLauncher.launch(intent)
+        imagePickerLauncher.launch(intent) // 이미지 선택 결과 대기
     }
 
     // 이미지 선택 결과 처리
@@ -104,7 +108,7 @@ class WriteFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null // ViewBinding 정리
+        binding = null // ViewBinding 해제
     }
 }
 
