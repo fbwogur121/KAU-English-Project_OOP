@@ -24,57 +24,9 @@
             android:src="@drawable/menu_icon" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/fragmentContainer"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <ImageButton
-            android:id="@+id/LexiLearn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="36dp"
-            android:background="@null"
-            android:src="@drawable/lexilearn" />
-
-        <ImageButton
-            android:id="@+id/financeJournal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="36dp"
-            android:background="@null"
-            android:src="@drawable/journal_button" />
-
-
-
-        <ImageButton
-            android:id="@+id/financeYoutube"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="36dp"
-            android:background="@null"
-            android:src="@drawable/youtube_button" />
-
-
-        <ImageButton
-            android:id="@+id/financeToday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="36dp"
-            android:background="@null"
-            android:src="@drawable/today_button" />
-
-        <ImageButton
-            android:id="@+id/shopping"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="36dp"
-            android:background="@null"
-            android:src="@drawable/shopping_button" />
-
-    </LinearLayout>
-
+        android:layout_marginBottom="36dp" />
 </LinearLayout>
-
