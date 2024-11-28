@@ -7,7 +7,7 @@ import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kau_english_oop.R
 
-class HomeAdapter(private val imageList: List<Int>) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
+class HomeAdapter(private var imageList: List<Int>) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageButton: ImageButton = view.findViewById(R.id.imageButton)
@@ -24,4 +24,10 @@ class HomeAdapter(private val imageList: List<Int>) : RecyclerView.Adapter<HomeA
     }
 
     override fun getItemCount() = imageList.size
+
+    // 이미지 리스트 업데이트 메서드 추가
+    fun updateImageList(newImageList: List<Int>) {
+        imageList = newImageList
+        notifyDataSetChanged() // 데이터 변경 알림
+    }
 }
