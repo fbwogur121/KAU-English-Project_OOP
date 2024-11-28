@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kau_english_oop.Adapter.ImageButtonAdapter
+import com.example.kau_english_oop.Adapter.HomeAdapter
 import com.example.kau_english_oop.databinding.FragmentHomeBinding
 
 
 class HomeFragment : Fragment() {
     private var binding: FragmentHomeBinding? = null
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: ImageButtonAdapter
+    private lateinit var adapter: HomeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
 
         // RecyclerView 설정
         recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = ImageButtonAdapter(getImageButtonList()) // 이미지 버튼 리스트 가져오기
+        adapter = HomeAdapter(getImageButtonList()) // 이미지 버튼 리스트 가져오기
         recyclerView.adapter = adapter
 
         // btnMenu 클릭 리스너 추가
