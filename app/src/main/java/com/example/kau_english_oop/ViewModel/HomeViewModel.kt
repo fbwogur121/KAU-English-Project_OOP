@@ -19,6 +19,9 @@ class HomeViewModel : ViewModel() {
             R.drawable.journal_button,
             R.drawable.youtube_button,
             R.drawable.today_button,
+            R.drawable.shopping_button,
+            R.drawable.youtube_button,
+            R.drawable.today_button,
             R.drawable.shopping_button
         )
     }
