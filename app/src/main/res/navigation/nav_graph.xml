@@ -11,12 +11,6 @@
         android:name="com.example.kau_english_oop.CalendarFragment"
         tools:layout="@layout/fragment_calendar" />
 
-    <!-- RankingFragment -->
-    <fragment
-        android:id="@+id/rankingFragment"
-        android:name="com.example.kau_english_oop.RankingFragment"
-        tools:layout="@layout/fragment_ranking" />
-
     <!-- MyPointFragment -->
     <fragment
         android:id="@+id/myPointFragment"
@@ -24,9 +18,6 @@
         tools:layout="@layout/fragment_my_point" />
 
     <!-- Actions -->
-    <action
-        android:id="@+id/action_calendarFragment_to_rankingFragment"
-        app:destination="@id/rankingFragment" />
     <action
         android:id="@+id/action_calendarFragment_to_myPointFragment"
         app:destination="@id/myPointFragment" />

@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import com.example.kau_english_oop.Calendar.CalendarFragment
+//import com.example.kau_english_oop.Calendar.CalendarFragment
 import com.example.kau_english_oop.Camera.CameraFragment
 import com.example.kau_english_oop.Like.LikeFragment
 import com.example.kau_english_oop.MapFragment
@@ -25,12 +25,10 @@ class MainActivity : AppCompatActivity() {
 
         // 외부 저장소 읽기 권한 요청
         // 앱 실행 시 외부 저장소 접근을 위한 권한을 요청
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),0)
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 0)
 
         // activity_main.xml 파일의 root 레이아웃을 화면에 표시
         setContentView(binding.root)
-
-
 
         // 초기 화면 설정
         // 앱 실행 시 처음 표시할 Fragment를 HomeFragment로 설정
@@ -73,17 +71,10 @@ class MainActivity : AppCompatActivity() {
     // Fragment 전환을 위한 함수
     private fun loadFragment(fragment: Fragment) {
         // FragmentManager를 사용해 현재 화면을 선택한 Fragment로 교체
-        supportFragmentManager.beginTransaction().apply{
+        supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentContainer, fragment) // fragmentContainer에 새로운 Fragment를 교체
             addToBackStack(null) // 백 스택에 추가, 뒤로 가기 시 이전 Fragment로 돌아갈 수 있음
             commit() // 트랜잭션 적용
         }
-
     }
-
 }
-
-
-
-
-

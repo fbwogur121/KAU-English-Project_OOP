@@ -1,69 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <data>
-        <!-- ViewModel이나 데이터 객체를 선언할 수 있습니다 -->
-    </data>
-
+    <!-- Top Navigation Layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#1A1A1A"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:weightSum="3">
 
-        <!-- 상단 버튼 바 -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!-- Menu Icon -->
+        <ImageButton
+            android:id="@+id/btnMenu"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:contentDescription="Menu Button"
+            android:src="@drawable/menu_icon" />
+
+        <!-- Check 버튼 -->
+        <ImageButton
+            android:id="@+id/btn_check"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:padding="16dp">
-
-            <!-- Check 버튼 -->
-            <ImageButton
-                android:id="@+id/btn_check"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@null"
-                android:contentDescription="Check Button"
-                android:src="@drawable/calendar_check_button_selected" />
-
-            <!-- 2024 버튼 -->
-            <ImageButton
-                android:id="@+id/btn_2024"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@null"
-                android:contentDescription="2024 Button"
-                android:src="@drawable/calendar_2024_button_selected" />
-
-            <!-- Ranking 버튼 -->
-            <ImageButton
-                android:id="@+id/btn_ranking"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@null"
-                android:contentDescription="Ranking Button"
-                android:src="@drawable/calendar_ranking_button_unselected" />
-
-            <!-- MyPoint 버튼 -->
-            <ImageButton
-                android:id="@+id/btn_mypoint"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@null"
-                android:contentDescription="MyPoint Button"
-                android:src="@drawable/calendar_mypoint_button_unselected" />
-        </LinearLayout>
-
-        <!-- 캘린더 뷰 -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/calendar_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
             android:layout_weight="1"
-            android:padding="16dp" />
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:background="@null"
+            android:contentDescription="Check Button"
+            android:src="@drawable/calendar_check_button_selected" />
 
+        <!-- Ranking 버튼 -->
+        <ImageButton
+            android:id="@+id/btn_ranking"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:background="@null"
+            android:contentDescription="Ranking Button"
+            android:src="@drawable/calendar_ranking_button_unselected" />
+
+        <!-- MyPoint 버튼 -->
+        <ImageButton
+            android:id="@+id/btn_mypoint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:background="@null"
+            android:contentDescription="MyPoint Button"
+            android:src="@drawable/calendar_mypoint_button_unselected" />
     </LinearLayout>
-</layout>
+
+    <!-- 연도 선택 바 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="8dp">
+
+        <ImageButton
+            android:id="@+id/btn_2024"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/calendar_2024_button_selected"
+            android:background="@null"
+            android:contentDescription="2024 Button" />
+    </LinearLayout>
+
+    <!-- 캘린더 RecyclerView 추가 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/calendarRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:background="#000000" /> <!-- 배경색 추가 -->
+
+
+</LinearLayout>
