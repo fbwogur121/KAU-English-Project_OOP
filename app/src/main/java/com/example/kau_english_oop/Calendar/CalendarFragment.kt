@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.kau_english_oop.databinding.FragmentCalendarBinding
+import com.example.kau_english_oop.Adapter.CalendarPagerAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -24,26 +26,20 @@ class CalendarFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // View Binding 초기화
         binding = FragmentCalendarBinding.inflate(inflater, container, false)
 
-        // 캘린더 어댑터 초기화
-        calendarAdapter = CalendarAdapter(checkedDates) { date ->
-            onDateClicked(date) // 날짜 클릭 이벤트 처리
-        }
+        // ViewPager 설정
+        setupViewPager()
 
-        // RecyclerView 설정
-        binding.calendarRecyclerView.layoutManager = GridLayoutManager(requireContext(), 7) // 7일 기준
-        binding.calendarRecyclerView.adapter = calendarAdapter
+        // TabLayout 설정
+        setupTabLayout()
 
-        // Firestore에서 데이터 가져오기
-        fetchCheckedDates()
-
-        // 버튼 클릭 이벤트 초기화
+        // 기타 버튼 리스너
         setupButtonListeners()
 
         return binding.root
     }
+
 
     private fun setupButtonListeners() {
         // Check 버튼: 현재 화면 유지
@@ -80,7 +76,7 @@ class CalendarFragment : Fragment() {
                     if (document != null && document.contains("checkedDates")) {
                         val dates = document["checkedDates"] as List<String>
                         checkedDates.clear()
-                        checkedDates.addAll(dates)
+                        checkedDates.addAll(dates.map { it.trim() }) // 공백 제거 후 추가
                         updateCalendar()
                     } else {
                         Log.d("CalendarFragment", "checkedDates 필드가 없습니다.")
@@ -94,27 +90,70 @@ class CalendarFragment : Fragment() {
         }
     }
 
+
     private fun updateCalendar() {
-        // 2024년의 모든 날짜를 생성하여 캘린더에 표시
-        val dates = generateDatesFor2024()
+        // 2024년의 모든 날짜를 하나의 리스트로 변환
+        val dates = generateDatesFor2024().flatten() // List<List<String>> -> List<String>
         Log.d("CalendarFragment", "Generated dates: $dates")
-        calendarAdapter.submitList(dates)
+        calendarAdapter.submitList(dates) // 올바른 타입 전달
     }
 
-    private fun generateDatesFor2024(): List<String> {
-        val dates = mutableListOf<String>()
+    private fun generateDatesFor2024(): List<List<String>> {
+        val months = mutableListOf<List<String>>()
         val calendar = java.util.Calendar.getInstance()
-        calendar.set(2024, 0, 1) // 2024년 1월 1일
 
-        while (calendar.get(java.util.Calendar.YEAR) == 2024) {
-            val formattedDate = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
-                .format(calendar.time)
-            dates.add(formattedDate)
-            calendar.add(java.util.Calendar.DAY_OF_MONTH, 1)
+        for (month in 0..11) { // 0 = 1월, 11 = 12월
+            val dates = mutableListOf<String>()
+            calendar.set(2024, month, 1) // 각 월의 첫 날 설정
+
+            while (calendar.get(java.util.Calendar.MONTH) == month) {
+                val formattedDate = java.text.SimpleDateFormat(
+                    "yyyy-MM-dd",
+                    java.util.Locale.getDefault()
+                ).format(calendar.time)
+                dates.add(formattedDate)
+                calendar.add(java.util.Calendar.DAY_OF_MONTH, 1) // 하루씩 증가
+            }
+
+            months.add(dates) // 각 월의 날짜 리스트를 추가
         }
-        Log.d("CalendarFragment", "Generated dates for 2024: $dates")
-        return dates
+
+        return months // 월별 날짜 데이터를 담은 리스트 반환
     }
+
+
+
+
+    private fun setupViewPager() {
+        val months = generateDatesFor2024()
+        val pagerAdapter = CalendarPagerAdapter(months, checkedDates) { date ->
+            if (checkedDates.contains(date)) {
+                checkedDates.remove(date)
+            } else {
+                checkedDates.add(date)
+            }
+            saveCheckedDatesToFirestore()
+            binding.viewPagerCalendar.adapter?.notifyDataSetChanged()
+        }
+        binding.viewPagerCalendar.adapter = pagerAdapter
+    }
+
+
+    private fun setupTabLayout() {
+        val tabTitles = listOf(
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        )
+
+        // TabLayout과 ViewPager2 연결
+        TabLayoutMediator(binding.tabLayout, binding.viewPagerCalendar) { tab, position ->
+            tab.text = tabTitles[position] // 각 탭의 제목 설정
+            tab.contentDescription = "Tab for ${tabTitles[position]}" // 접근성 설명 추가
+        }.attach()
+    }
+
+
+
 
     private fun onDateClicked(date: String) {
         if (checkedDates.contains(date)) {

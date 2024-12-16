@@ -31,8 +31,9 @@ class CalendarAdapter(
 
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
         val date = dates[position]
-        Log.d("CalendarAdapter", "Binding date: $date at position $position")
-        holder.bind(date, checkedDates.contains(date))
+        val isChecked = checkedDates.any { it.trim() == date.trim() } // 공백 제거 후 정확 비교
+        Log.d("CalendarAdapter", "Binding date: $date, isChecked: $isChecked")
+        holder.bind(date, isChecked)
     }
 
     override fun getItemCount(): Int = dates.size
@@ -41,7 +42,9 @@ class CalendarAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(date: String, isChecked: Boolean) {
-            binding.textDate.text = date
+            // 날짜에서 일(DD)만 표시하도록 수정
+            val displayDate = date.substring(8, 10) // yyyy-MM-dd 형식에서 마지막 두 자리만 추출
+            binding.textDate.text = displayDate
 
             // 체크된 날짜는 배경 변경
             if (isChecked) {
