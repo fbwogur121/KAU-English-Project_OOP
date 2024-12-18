@@ -27,6 +27,14 @@
             android:background="@null"
             android:contentDescription="Menu Button"
             android:src="@drawable/menu_icon" />
+        <!-- Conversation Icon -->
+        <ImageView
+            android:id="@+id/icon_conversation"
+            android:layout_width="302dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="Conversation Icon"
+            android:src="@drawable/icon_conversation" />
     </LinearLayout>
 
     <TextView

@@ -22,6 +22,14 @@
             android:background="@null"
             android:contentDescription="Menu Button"
             android:src="@drawable/menu_icon" />
+        <!-- LexiMap Icon -->
+        <ImageView
+            android:id="@+id/icon_leximap"
+            android:layout_width="302dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="LexiMap Icon"
+            android:src="@drawable/icon_leximap" />
     </LinearLayout>
 
     <!-- SupportMapFragment 영역 -->
