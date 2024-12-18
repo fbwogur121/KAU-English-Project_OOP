@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/calendarFragment">
+
+    <!-- CalendarFragment -->
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.kau_english_oop.CalendarFragment"
+        tools:layout="@layout/fragment_calendar" />
+
+    <!-- MyPointFragment -->
+    <fragment
+        android:id="@+id/myPointFragment"
+        android:name="com.example.kau_english_oop.MyPointFragment"
+        tools:layout="@layout/fragment_my_point" />
+
+    <!-- Actions -->
+    <action
+        android:id="@+id/action_calendarFragment_to_myPointFragment"
+        app:destination="@id/myPointFragment" />
+</navigation>
