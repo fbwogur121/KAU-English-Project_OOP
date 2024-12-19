@@ -16,8 +16,12 @@ class StartActivity : AppCompatActivity() {
 
         // 회원가입 화면으로 이동하는 버튼 클릭 이벤트 처리
         binding.registerButton.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            navigateToRegisterActivity()
         }
+    }
+
+    private fun navigateToRegisterActivity() {
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
     }
 }

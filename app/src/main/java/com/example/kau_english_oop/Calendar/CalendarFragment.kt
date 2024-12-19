@@ -122,8 +122,6 @@ class CalendarFragment : Fragment() {
     }
 
 
-
-
     private fun setupViewPager() {
         val months = generateDatesFor2024()
         val pagerAdapter = CalendarPagerAdapter(months, checkedDates) { date ->
