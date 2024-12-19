@@ -257,13 +257,13 @@ import java.util.*
 
 class MapFragment : Fragment(), OnMapReadyCallback {
 
-    private var binding: FragmentMapBinding? = null
-    private lateinit var mMap: GoogleMap
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private val LOCATION_PERMISSION_REQUEST_CODE = 1234
-    private var selectedBuildingName: String? = null
-    private var previousMarker: Marker? = null
-    private lateinit var viewModel: MapViewModel
+    private var binding: FragmentMapBinding? = null // ViewBinding 객체
+    private lateinit var mMap: GoogleMap // GoogleMap 객체
+    private lateinit var fusedLocationClient: FusedLocationProviderClient // 위치 서비스 클라이언트
+    private val LOCATION_PERMISSION_REQUEST_CODE = 1234 // 위치 권한 요청 코드
+    private var selectedBuildingName: String? = null // 선택된 빌딩 이름 저장
+    private var previousMarker: Marker? = null // 이전에 추가된 마커
+    private lateinit var viewModel: MapViewModel // ViewModel 객체
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentMapBinding.inflate(inflater, container, false)
@@ -340,7 +340,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     private fun fetchBuildingDetailsFromPlacesAPI(latLng: LatLng) {
         val location = "${latLng.latitude},${latLng.longitude}"
-        viewModel.fetchNearbyPlaces(location, 30)
+        viewModel.fetchNearbyPlaces(location, 30) // 검색범위 30m로 설정
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
