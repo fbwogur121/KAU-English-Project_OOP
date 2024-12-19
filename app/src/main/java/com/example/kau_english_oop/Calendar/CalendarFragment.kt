@@ -1,3 +1,4 @@
+// CalendarFragment.kt
 package com.example.kau_english_oop
 
 import android.os.Bundle
@@ -19,8 +20,8 @@ class CalendarFragment : Fragment() {
     private lateinit var binding: FragmentCalendarBinding
     private lateinit var calendarAdapter: CalendarAdapter
     private val firestore = FirebaseFirestore.getInstance()
-    private val auth = FirebaseAuth.getInstance()
-    private val checkedDates = mutableListOf<String>() // Firestore에서 가져온 체크된 날짜 리스트
+    private val firebaseAuth = FirebaseAuth.getInstance()
+    private val selectedDates = mutableListOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,45 +29,33 @@ class CalendarFragment : Fragment() {
     ): View {
         binding = FragmentCalendarBinding.inflate(inflater, container, false)
 
-        // ViewPager 설정
         setupViewPager()
-
-        // TabLayout 설정
         setupTabLayout()
-
-        // 기타 버튼 리스너
         setupButtonListeners()
 
         return binding.root
     }
 
-
     private fun setupButtonListeners() {
-        // Check 버튼: 현재 화면 유지
         binding.btnCheck.setOnClickListener {
             Toast.makeText(requireContext(), "현재 화면입니다.", Toast.LENGTH_SHORT).show()
         }
 
-        // Ranking 버튼: RankingFragment로 이동
         binding.btnRanking.setOnClickListener {
             Toast.makeText(requireContext(), "Ranking 화면으로 이동합니다.", Toast.LENGTH_SHORT).show()
-            // Navigation 로직 추가 가능
         }
 
-        // MyPoint 버튼: MyPointFragment로 이동
         binding.btnMypoint.setOnClickListener {
             Toast.makeText(requireContext(), "MyPoint 화면으로 이동합니다.", Toast.LENGTH_SHORT).show()
-            // Navigation 로직 추가 가능
         }
 
-        // 2024 버튼: 기본 상태 유지
         binding.btn2024.setOnClickListener {
             Toast.makeText(requireContext(), "2024년 캘린더입니다.", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun fetchCheckedDates() {
-        val currentUser = auth.currentUser
+    private fun fetchSelectedDates() {
+        val currentUser = firebaseAuth.currentUser
         if (currentUser != null) {
             val userId = currentUser.uid
             val userDocRef = firestore.collection("users").document(userId)
@@ -75,8 +64,8 @@ class CalendarFragment : Fragment() {
                 .addOnSuccessListener { document ->
                     if (document != null && document.contains("checkedDates")) {
                         val dates = document["checkedDates"] as List<String>
-                        checkedDates.clear()
-                        checkedDates.addAll(dates.map { it.trim() }) // 공백 제거 후 추가
+                        selectedDates.clear()
+                        selectedDates.addAll(dates.map { it.trim() })
                         updateCalendar()
                     } else {
                         Log.d("CalendarFragment", "checkedDates 필드가 없습니다.")
@@ -90,21 +79,19 @@ class CalendarFragment : Fragment() {
         }
     }
 
-
     private fun updateCalendar() {
-        // 2024년의 모든 날짜를 하나의 리스트로 변환
-        val dates = generateDatesFor2024().flatten() // List<List<String>> -> List<String>
+        val dates = generateDatesFor2024().flatten()
         Log.d("CalendarFragment", "Generated dates: $dates")
-        calendarAdapter.submitList(dates) // 올바른 타입 전달
+        calendarAdapter.updateDates(dates) // 수정: submitList -> updateDates
     }
 
     private fun generateDatesFor2024(): List<List<String>> {
         val months = mutableListOf<List<String>>()
         val calendar = java.util.Calendar.getInstance()
 
-        for (month in 0..11) { // 0 = 1월, 11 = 12월
+        for (month in 0..11) {
             val dates = mutableListOf<String>()
-            calendar.set(2024, month, 1) // 각 월의 첫 날 설정
+            calendar.set(2024, month, 1)
 
             while (calendar.get(java.util.Calendar.MONTH) == month) {
                 val formattedDate = java.text.SimpleDateFormat(
@@ -112,30 +99,28 @@ class CalendarFragment : Fragment() {
                     java.util.Locale.getDefault()
                 ).format(calendar.time)
                 dates.add(formattedDate)
-                calendar.add(java.util.Calendar.DAY_OF_MONTH, 1) // 하루씩 증가
+                calendar.add(java.util.Calendar.DAY_OF_MONTH, 1)
             }
 
-            months.add(dates) // 각 월의 날짜 리스트를 추가
+            months.add(dates)
         }
 
-        return months // 월별 날짜 데이터를 담은 리스트 반환
+        return months
     }
-
 
     private fun setupViewPager() {
         val months = generateDatesFor2024()
-        val pagerAdapter = CalendarPagerAdapter(months, checkedDates) { date ->
-            if (checkedDates.contains(date)) {
-                checkedDates.remove(date)
+        val pagerAdapter = CalendarPagerAdapter(months, selectedDates) { date ->
+            if (selectedDates.contains(date)) {
+                selectedDates.remove(date)
             } else {
-                checkedDates.add(date)
+                selectedDates.add(date)
             }
-            saveCheckedDatesToFirestore()
+            saveSelectedDatesToFirestore()
             binding.viewPagerCalendar.adapter?.notifyDataSetChanged()
         }
         binding.viewPagerCalendar.adapter = pagerAdapter
     }
-
 
     private fun setupTabLayout() {
         val tabTitles = listOf(
@@ -143,44 +128,33 @@ class CalendarFragment : Fragment() {
             "July", "August", "September", "October", "November", "December"
         )
 
-        // TabLayout과 ViewPager2 연결
         TabLayoutMediator(binding.tabLayout, binding.viewPagerCalendar) { tab, position ->
-            tab.text = tabTitles[position] // 각 탭의 제목 설정
-            tab.contentDescription = "Tab for ${tabTitles[position]}" // 접근성 설명 추가
+            tab.text = tabTitles[position]
+            tab.contentDescription = "Tab for ${tabTitles[position]}"
         }.attach()
     }
 
-
-
-
     private fun onDateClicked(date: String) {
-        if (checkedDates.contains(date)) {
-            // 날짜가 이미 체크된 경우 -> 체크 해제
-            checkedDates.remove(date)
+        if (selectedDates.contains(date)) {
+            selectedDates.remove(date)
         } else {
-            // 날짜가 체크되지 않은 경우 -> 체크 추가
-            checkedDates.add(date)
+            selectedDates.add(date)
         }
 
-        // Firestore 업데이트
-        saveCheckedDatesToFirestore()
-
-        // 캘린더 업데이트
+        saveSelectedDatesToFirestore()
         calendarAdapter.notifyDataSetChanged()
     }
 
-    private fun saveCheckedDatesToFirestore() {
-        val currentUser = auth.currentUser
+    private fun saveSelectedDatesToFirestore() {
+        val currentUser = firebaseAuth.currentUser
         if (currentUser != null) {
             val userId = currentUser.uid
             val userDocRef = firestore.collection("users").document(userId)
 
-            // 체크된 날짜의 개수를 포인트로 계산
-            val points = checkedDates.size
+            val points = selectedDates.size
 
-            // Firestore에 `checkedDates`와 `point` 필드를 업데이트
             val updates = mapOf(
-                "checkedDates" to checkedDates,
+                "checkedDates" to selectedDates,
                 "point" to points
             )
 
@@ -195,5 +169,4 @@ class CalendarFragment : Fragment() {
             Log.e("CalendarFragment", "로그인된 유저가 없습니다.")
         }
     }
-
 }
